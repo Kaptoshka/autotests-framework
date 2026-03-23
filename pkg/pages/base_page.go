@@ -42,7 +42,7 @@ func New(
 func (p *BasePage) Navigate(path string) error {
 	url := p.BaseURL + path
 
-	p.Log.Info("navigating to", "url", url)
+	p.Log.Info("Navigating to", "url", url)
 
 	if _, err := p.Page.Goto(url, playwright.PageGotoOptions{
 		WaitUntil: playwright.WaitUntilStateNetworkidle,
@@ -56,7 +56,7 @@ func (p *BasePage) Navigate(path string) error {
 
 // WaitForURL waits until the current URL matches the expected value.
 func (p *BasePage) WaitForURL(urlPattern string) error {
-	p.Log.Info("waiting for URL", "pattern", urlPattern)
+	p.Log.Info("Waiting for URL", "pattern", urlPattern)
 
 	if err := p.Page.WaitForURL(urlPattern, playwright.PageWaitForURLOptions{
 		Timeout: new(float64(p.Timeout)),
@@ -94,7 +94,7 @@ func (p *BasePage) XPath(selector, description string) *elements.Element {
 
 // WaitForNetworkIdle waits for network to be idle.
 func (p *BasePage) WaitForNetworkIdle() error {
-	p.Log.Debug("waiting for network idle")
+	p.Log.Debug("Waiting for network idle")
 
 	if err := p.Page.WaitForLoadState(playwright.PageWaitForLoadStateOptions{
 		State:   playwright.LoadStateNetworkidle,

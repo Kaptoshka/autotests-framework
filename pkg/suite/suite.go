@@ -62,32 +62,32 @@ func (s *TestSuite) Setup(testName string) error {
 		return fmt.Errorf("browser setup failed: %w", err)
 	}
 
-	s.Log.Info("test setup complete", "test", testName)
+	s.Log.Info("Test setup complete", "test", testName)
 	return nil
 }
 
 // Teardown handles cleanup, screenshots on failure, and finalizes reports.
 func (s *TestSuite) Teardown(testName string, testErr *error) {
 	if testErr != nil && *testErr != nil {
-		s.Log.Warn("test FAILED -- capturing screenshot", "test", testName)
+		s.Log.Warn("Test FAILED -- capturing screenshot", "test", testName)
 		if bytes, err := s.Screenshot.CaptureAsBites(s.Browser.Page); err == nil {
 			_ = s.Reporter.AddScreenshot(bytes, fmt.Sprintf("Failure: %s", testName))
 		} else {
-			s.Log.Warn("failed to capture screenshot", "err", err)
+			s.Log.Warn("Failed to capture screenshot", "err", err)
 		}
 		s.Reporter.SetFailed(*testErr)
 	}
 
 	if err := s.Reporter.Finalize(); err != nil {
-		s.Log.Warn("could not finalize Allure report", "err", err)
+		s.Log.Warn("Could not finalize Allure report", "err", err)
 	}
 
 	err := s.Browser.Close()
 	if err != nil {
-		s.Log.Warn("could not close browser", "err", err)
+		s.Log.Warn("Could not close browser", "err", err)
 	}
 
-	s.Log.Info("test teardown complete", "test", testName)
+	s.Log.Info("Test teardown complete", "test", testName)
 }
 
 // Step records a named step in the report and logs it.

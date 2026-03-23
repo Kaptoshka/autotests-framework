@@ -209,7 +209,7 @@ func (e *Element) SelectOption(value string) error {
 
 // Hover hovers over the element.
 func (e *Element) Hover() error {
-	e.log.Debug("hovering over element", "element", e.description)
+	e.log.Debug("Hovering over element", "element", e.description)
 
 	if err := e.locator.Hover(); err != nil {
 		return fmt.Errorf("failed to hover over [%s]: %w", e.description, err)
@@ -220,7 +220,7 @@ func (e *Element) Hover() error {
 
 // ScrollIntoView scrolls element into the viewport.
 func (e *Element) ScrollIntoView() error {
-	e.log.Debug("scrolling element into view", "element", e.description)
+	e.log.Debug("Scrolling element into view", "element", e.description)
 
 	if err := e.locator.ScrollIntoViewIfNeeded(); err != nil {
 		return fmt.Errorf(

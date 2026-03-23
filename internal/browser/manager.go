@@ -164,12 +164,12 @@ func (m *Manager) getBrowserLaunchOptions() playwright.BrowserTypeLaunchOptions 
 	switch m.cfg.Browser {
 	case config.BrowserChromium:
 		if execPath := os.Getenv("PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH"); execPath != "" {
-			m.log.Info("using custom Chromium path", "path", execPath)
+			m.log.Info("Using custom Chromium path", "path", execPath)
 			opts.ExecutablePath = &execPath
 		}
 	case config.BrowserFirefox:
 		if execPath := os.Getenv("PLAYWRIGHT_FIREFOX_EXECUTABLE_PATH"); execPath != "" {
-			m.log.Info("using custom Firefox path", "path", execPath)
+			m.log.Info("Using custom Firefox path", "path", execPath)
 			opts.ExecutablePath = &execPath
 		}
 	case config.BrowserWebKit:

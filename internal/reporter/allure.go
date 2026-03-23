@@ -78,12 +78,12 @@ type AllureReporter struct {
 // New creates reporter for a test.
 func New(outputDir, testName, suiteName string, log *slog.Logger) *AllureReporter {
 	if err := os.MkdirAll(outputDir, 0o700); err != nil {
-		log.Warn("could not create allure results dir", "err", err)
+		log.Warn("Could not create allure results dir", "err", err)
 	}
 
 	uuid, err := uuidG.NewV7()
 	if err != nil {
-		log.Warn("could not generate uuid", "err", err)
+		log.Warn("Could not generate uuid", "err", err)
 	}
 
 	uuidStr := uuid.String()
@@ -143,7 +143,7 @@ func (r *AllureReporter) StopStep(status Status) {
 func (r *AllureReporter) AddScreenshot(screenshotBytes []byte, name string) error {
 	uuid, err := uuidG.NewV7()
 	if err != nil {
-		r.log.Warn("could not generate uuid", "err", err)
+		r.log.Warn("Could not generate uuid", "err", err)
 	}
 	filename := fmt.Sprintf("%s-%d", uuid.String(), time.Now().UnixMilli())
 	destPath := filepath.Join(r.outputDir, filename)
@@ -165,7 +165,7 @@ func (r *AllureReporter) AddScreenshot(screenshotBytes []byte, name string) erro
 		r.result.Attachments = append(r.result.Attachments, attachment)
 	}
 
-	r.log.Info("screenshot attached to allure report", "name", name)
+	r.log.Info("Screenshot attached to allure report", "name", name)
 	return nil
 }
 
@@ -219,6 +219,6 @@ func (r *AllureReporter) Finalize() error {
 		return fmt.Errorf("failed to write allure result: %w", err)
 	}
 
-	r.log.Info("allure result written", "file", filename, "status", r.result.Status)
+	r.log.Info("Allure result written", "file", filename, "status", r.result.Status)
 	return nil
 }
